@@ -1,0 +1,35 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.container {
+  height: 50vh;
+  border: 4px solid black;
+  position: relative;
+  /* border: 6px solid black; */
+}
+
+/* 1rem = 16px  */
+
+nav {
+  /* margin-top: 10rem; */
+
+  height: 5rem;
+  width: 50%;
+  background-color: aqua;
+  position: absolute;
+  /* bottom: 0; */
+  right: 0;
+  bottom: 0;
+  /* position: sticky;
+  top: 2rem; */
+  /* position: fixed; */
+  /* top: 0; */
+  /* bottom: ;
+  left: ;
+  right: ; */
+}
+p {
+  margin-top: 5rem;
+}

@@ -1,0 +1,33 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.container {
+  height: 100vh;
+  background-color: black;
+}
+h1 {
+  font-size: 4rem;
+}
+
+/* for mobile device */
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .container {
+    background-color: blue;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+/* for tablet device */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    background-color: red;
+  }
+  h1 {
+    font-size: 3rem;
+  }
+}
+

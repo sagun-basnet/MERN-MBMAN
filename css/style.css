@@ -1,0 +1,37 @@
+/* h1 {
+  color: red;
+} */
+
+/* class selector  */
+/* .heading {
+  color: red;
+} */
+/* #myHeading {
+  color: red;
+} */
+
+/* .container p {
+} */
+
+/* #myHeading, .container p, {
+    color: ;
+} */
+* {
+  padding: 0;
+  margin: 0;
+}
+.container {
+  height: 100px;
+  width: 50%;
+  border: 2px solid black;
+  /* padding: 10px; */
+  /* padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px; */
+  /* padding: 10px 5px 10px 5px;
+  margin: 10px 5px 10px 5px; */
+  /* margin-top: ; */
+}
+p {
+}
