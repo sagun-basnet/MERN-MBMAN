@@ -84,11 +84,11 @@ const api = [
   },
 ];
 
-api.map((item, index) => {
-  console.log(`UserId: ${item.userId}`);
-  console.log(`Title: ${item.title}`);
-  console.log(`Body: ${item.body}`);
-  console.log("===========================================");
-});
 
 
+// api.map((item, index) => {
+//   console.log(`UserId: ${item.userId}`);
+//   console.log(`Title: ${item.title}`);
+//   console.log(`Body: ${item.body}`);
+//   console.log("===========================================");
+// });
