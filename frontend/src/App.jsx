@@ -12,6 +12,8 @@ import NotFound from "./pages/NotFound";
 import LoginPage from "./pages/LoginPage";
 import Register from "./pages/Register";
 import HomeLayout from "./layout/HomeLayout";
+import Table from "./pages/Table";
+import EditUser from "./pages/EditUser";
 // import AdminLayout from "./layout/AdminLayout";
 
 const App = () => {
@@ -61,8 +63,20 @@ const App = () => {
     //   ],
     // },
     {
-      path: "login",
+      path: "/login",
       element: <LoginPage />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
+    },
+    {
+      path: "/edit-user/:id",
+      element: <EditUser />,
+    },
+    {
+      path: "/table",
+      element: <Table />,
     },
     {
       path: "*",

@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "./context/AuthContext";
 
-const Navbar = ({ username }) => {
-  console.log(username);
+const Navbar = () => {
+  const { currentUser, logout } = useContext(AuthContext);
+  console.log(currentUser);
 
   return (
     <nav className="flex justify-between items-center px-4 h-[5rem] bg-amber-500">
@@ -24,14 +27,14 @@ const Navbar = ({ username }) => {
       {/* {
     username.length !== 0 && <span>{username}</span>
 } */}
-      <div className="flex gap-6 ">
+      {/* <div className="flex gap-6 ">
         <button className="bg-red-500 text-white font-bold">Login</button>
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold transition-colors">
           Register
         </button>
-      </div>
+      </div> */}
 
-      {/* {username.length === 0 ? (
+      {!currentUser ? (
         <div className="flex gap-6 ">
           <button className="bg-red-500 text-white font-bold">Login</button>
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold transition-colors">
@@ -40,9 +43,16 @@ const Navbar = ({ username }) => {
         </div>
       ) : (
         <div>
-          <span>{username}</span>
+          <button
+            onClick={() => {
+              logout();
+            }}
+            className="bg-red-500 text-white font-bold"
+          >
+            Logout
+          </button>
         </div>
-      )} */}
+      )}
     </nav>
   );
 };

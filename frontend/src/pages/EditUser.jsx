@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { post } from "../utils/api";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Register = () => {
+const EditUser = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
   const [data, setdata] = useState({
     name: "",
@@ -11,12 +11,29 @@ const Register = () => {
     email: "",
     password: "",
   });
-  const [img, setImg] = useState([]);
+
+  const getData = async () => {
+    await axios
+      .get(`http://localhost:5000/api/get-single-user/${id}`)
+      .then((res) => {
+        console.log(res);
+        setdata(res.data.result[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const handleChange = (e) => {
     setdata((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   const handleSubmit = async (e) => {
+    console.log("Here");
+
     e.preventDefault();
 
     if (data.email.length === 0) {
@@ -36,18 +53,15 @@ const Register = () => {
       return;
     }
 
-    // console.log(data);
-    const formData = new FormData();
-
-    formData.append("name", data.name);
-    formData.append("phone", data.phone);
-    formData.append("email", data.email);
-    formData.append("password", data.password);
-    formData.append("image", img[0]);
-
-    // console.log(img[0]);
-
-    await post("/api/user", formData);
+    await axios
+      .put(`http://localhost:5000/api/user/${parseInt(id)}`, data)
+      .then((res) => {
+        console.log(res);
+        navigate("/table");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div>
@@ -57,17 +71,7 @@ const Register = () => {
           onSubmit={handleSubmit}
           className="flex flex-col gap-4 w-[25rem] shadow-2xl rounded-xl p-4"
         >
-          <h1 className="text-3xl font-bold">Register </h1>
-          <label>Upload Image:</label>
-          <input
-            onChange={(e) => {
-              setImg(e.target.files);
-            }}
-            type="file"
-            name="image"
-            accept="image/*"
-            id=""
-          />
+          <h1 className="text-3xl font-bold">Edit User </h1>
           <input
             value={data.name}
             onChange={handleChange}
@@ -102,7 +106,7 @@ const Register = () => {
           />
 
           <button className="bg-blue-500 w-full" type="submit">
-            Register
+            Submit
           </button>
         </form>
       </div>
@@ -110,4 +114,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default EditUser;

@@ -1,20 +1,23 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
 import { FaAccusoft } from "react-icons/fa";
 import { IoContract, IoHome } from "react-icons/io5";
+import { AuthContext } from "../context/AuthContext";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
   const handleChange = (e) => {
-    // console.log(e.target.value);
-    // console.log(e.target.name);
-    // console.log(`${e.target.name} : ${e.target.value}`);
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (formData.email.length === 0) {
@@ -28,8 +31,24 @@ const LoginPage = () => {
 
     console.log(formData);
 
-    //api call
-    // console.log();
+    const res = await login(formData);
+    toast.success("Login success");
+    // if (res.user.role_id === 1) {
+    //   navigate("/admin-dashboard");
+    // } else if (res.user.role_id === 2) {
+    //   navigate("/staff-dashboard");
+    // } else if (res.user.role_id === 4) {
+    //   navigate("/");
+    // }
+
+    // await axios
+    //   .post("http://localhost:5000/auth/login", formData)
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   return (
